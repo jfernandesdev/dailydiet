@@ -9,8 +9,9 @@
       "@routes/*": ["./src/routes/*"],
       "@screens/*": ["./src/screens/*"],
       "@storage/*": ["./src/storage/*"],
-      "@theme/*": ["./src/theme/*"],
       "@utils/*": ["./src/utils/*"]
-    }
-  }
+    },
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "types": ["styled-components"]
+  },
 }
