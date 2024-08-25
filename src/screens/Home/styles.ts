@@ -7,6 +7,16 @@ export const Container = styled.View`
   padding: 0 30px;
 `;
 
+export const FooterGradient = styled.View`
+  height: 100px; 
+  background: ${({ theme }) => theme.COLORS.white};
+  opacity: 0.5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
 export const Wrapper = styled.View`
   padding: 40px 0 30px;
   margin-bottom: 36px;

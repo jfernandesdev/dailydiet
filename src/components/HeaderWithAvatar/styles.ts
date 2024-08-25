@@ -6,6 +6,7 @@ export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 30px 0;
+  margin-top: 30px;
 `;
 
 export const Logo = styled.Image`

@@ -13,7 +13,7 @@ export const Content = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-height: 20px;
+  height: 100% !important;
 `;
 
 export const Separator = styled.View`
@@ -41,5 +41,5 @@ export const StatusIndicator = styled.View<{ isWithinDiet: boolean }>`
   height: 14px;
   border-radius: 7px;
   background-color: ${({ theme, isWithinDiet }) =>
-    isWithinDiet ? theme.COLORS.green_100 : theme.COLORS.red_100};
+    isWithinDiet ? theme.COLORS.green_300 : theme.COLORS.red_300};
 `;

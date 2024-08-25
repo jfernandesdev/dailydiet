@@ -41,3 +41,47 @@ export const getDietPercentage = (meals: IMeal[]): number => {
   const mealsWithinDiet = meals.filter(meal => meal.isWithinDiet).length;
   return (mealsWithinDiet / totalMeals) * 100;
 };
+
+// Calculo da melhor sequência de pratos dentro da dieta
+export const getBestDietStreak = (meals: IMeal[]): number => {
+  let bestStreak = 0;
+  let currentStreak = 0;
+
+  // Ordena as refeições por data e hora
+  const sortedMeals = meals
+    .sort((a, b) => {
+      const dateA = parseISO(a.date).getTime();
+      const dateB = parseISO(b.date).getTime();
+      const timeA = new Date(`1970-01-01T${a.time}:00`).getTime();
+      const timeB = new Date(`1970-01-01T${b.time}:00`).getTime();
+
+      return dateA - dateB || timeA - timeB;
+    });
+
+  for (const meal of sortedMeals) {
+    if (meal.isWithinDiet) {
+      currentStreak += 1;
+      if (currentStreak > bestStreak) {
+        bestStreak = currentStreak;
+      }
+    } else {
+      currentStreak = 0;
+    }
+  }
+
+  return bestStreak;
+};
+
+// Estatísticas
+export const getDietStats = (meals: IMeal[]) => {
+  const totalMeals = meals.length;
+  const mealsWithinDiet = meals.filter(meal => meal.isWithinDiet).length;
+  const mealsOutsideDiet = totalMeals - mealsWithinDiet;
+
+  return {
+    totalMeals,
+    mealsWithinDiet,
+    mealsOutsideDiet,
+    bestStreak: getBestDietStreak(meals)
+  };
+};
