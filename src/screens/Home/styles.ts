@@ -14,4 +14,5 @@ export const Wrapper = styled.View`
 export const Text = styled.Text`
   color: ${( { theme } ) => theme.COLORS.gray_700};
   font-size: ${({ theme }) => `${theme.FONT_SIZE.md}px`};
+  margin-bottom: 8px;
 `;
