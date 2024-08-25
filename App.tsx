@@ -8,6 +8,7 @@ import { THEME } from './src/theme';
 
 import { Home } from '@screens/Home';
 import { Dashboard } from '@screens/Dashboard';
+import { Feedback } from '@components/Feedback';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Nunito_400Regular, Nunito_700Bold });
@@ -20,7 +21,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <Dashboard /> : <Loading />}
+      {fontsLoaded ? <Feedback type="FAIL" /> : <Loading />}
     </ThemeProvider>
   );
 }
