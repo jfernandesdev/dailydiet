@@ -1,14 +1,17 @@
 import { Header } from '@components/Header';
-
-import { Container, Title } from './styles';
 import { PercentCard } from '@components/PercentCard';
+
+import { Container, Wrapper, Text } from './styles';
 
 export function Home(){
   return (
     <Container>
       <Header />
       <PercentCard percentage={90.86} />
-      <Title>Home</Title>
+
+      <Wrapper>
+        <Text>Refeições</Text>
+      </Wrapper>
     </Container>
   );
 }

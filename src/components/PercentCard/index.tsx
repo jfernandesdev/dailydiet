@@ -1,4 +1,5 @@
-import { Card, Percentage, TextCard } from './styles';
+import React from 'react';
+import { Card, Percentage, TextCard, IconUpRight } from './styles';
 
 interface IPercentCard {
   percentage: number;
@@ -9,6 +10,7 @@ export function PercentCard({ percentage }: IPercentCard) {
 
   return (
     <Card isRed={isRed}>
+      <IconUpRight isRed={isRed} />
       <Percentage> {percentage !== undefined ? percentage.toFixed(2) : '0.0'}%</Percentage>
       <TextCard>das refeições dentro da dieta</TextCard>
     </Card>
