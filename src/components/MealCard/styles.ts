@@ -1,19 +1,21 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  padding: 16px;
   background-color: ${({ theme }) => theme.COLORS.white};
   flex: 1;
   border: 1px solid ${({ theme }) => theme.COLORS.gray_300};
   margin-bottom: 8px;
   border-radius: 6px;
+  min-height: 49px;
+  padding: 0;
 `;
 
 export const Content = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100% !important;
+  height: 100%;
+  padding: 16px;
 `;
 
 export const Separator = styled.View`

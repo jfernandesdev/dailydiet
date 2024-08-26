@@ -34,7 +34,7 @@ export function Home() {
         renderSectionHeader={({ section: { title } }) => (
           <SectionHeader>{title}</SectionHeader>
         )}
-        contentContainerStyle={{ paddingBottom: 100 }} 
+        contentContainerStyle={{ paddingBottom: 50 }} 
       />
 
       <FooterGradient />
