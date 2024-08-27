@@ -1,4 +1,5 @@
 import { SectionList } from 'react-native';
+import {  useNavigation } from '@react-navigation/native';
 
 import { HeaderWithAvatar } from '@components/HeaderWithAvatar';
 import { PercentCard } from '@components/PercentCard';
@@ -15,6 +16,12 @@ export function Home() {
   const groupedMeals = getGroupedMeals(mealData);
   const dietPercentage = getDietPercentage(mealData);
 
+  const navigation = useNavigation();
+
+  const handleNewMeal = () => {
+    navigation.navigate('mealForm', { type: 'ADD'});
+  };
+
   return (
     <Container>
       <HeaderWithAvatar />
@@ -22,7 +29,11 @@ export function Home() {
 
       <Wrapper>
         <Text>Refeições</Text>
-        <Button title="Nova refeição" icon="add" />
+        <Button 
+          title="Nova refeição" 
+          icon="add"
+          onPress={handleNewMeal} 
+        />
       </Wrapper>
 
       <SectionList
@@ -34,7 +45,7 @@ export function Home() {
         renderSectionHeader={({ section: { title } }) => (
           <SectionHeader>{title}</SectionHeader>
         )}
-        contentContainerStyle={{ paddingBottom: 50 }} 
+        contentContainerStyle={{ paddingBottom: 100 }} 
       />
 
       <FooterGradient />

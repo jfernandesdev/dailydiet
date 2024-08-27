@@ -1,20 +1,22 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.COLORS.white};
   flex: 1;
   border: 1px solid ${({ theme }) => theme.COLORS.gray_300};
   margin-bottom: 8px;
   border-radius: 6px;
-  min-height: 49px;
+  min-height: 50px;
   padding: 0;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const Content = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  flex: 1;
   padding: 16px;
 `;
 

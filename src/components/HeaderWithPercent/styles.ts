@@ -15,11 +15,14 @@ export const Container = styled.View<ICardProps>`
  padding: 30px;
 `;
 
-export const IconLeft = styled(ArrowLeft)<ICardProps>`
-  color: ${({ theme, isRed }) => isRed ? theme.COLORS.red_500 : theme.COLORS.green_500};
+export const StyledTouchableOpacity = styled.TouchableOpacity`
   margin-right: auto;
   margin-bottom: -10px;
   width: 15px;
+`;
+
+export const IconLeft = styled(ArrowLeft)<ICardProps>`
+  color: ${({ theme, isRed }) => isRed ? theme.COLORS.red_500 : theme.COLORS.green_500};
 `;
 
 export const Title = styled.Text`

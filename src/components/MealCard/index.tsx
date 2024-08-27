@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Container, Content, Separator, MealTime, MealTitle, StatusIndicator } from './styles';
 
 export interface IMeal {
@@ -16,8 +17,14 @@ interface MealCardProps extends TouchableOpacityProps {
 }
 
 export function MealCard({ meal, ...rest }: MealCardProps) {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('mealDetails', { meal });
+  };
+
   return (
-    <Container {...rest}>
+    <Container {...rest} onPress={handlePress}>
       <Content>
         <MealTime>{meal.time}</MealTime>
         <Separator></Separator>

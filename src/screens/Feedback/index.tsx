@@ -1,4 +1,5 @@
 import { Button } from '@components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 import illustrationFailure from '@assets/illustration-failure.png';
 import illustrationSuccess from '@assets/illustration-success.png';
@@ -11,6 +12,13 @@ interface IFeedback {
 
 export function Feedback({ type = "SUCCESS" }: IFeedback) {
   const isSuccess = type === 'SUCCESS';
+
+  const navigation = useNavigation();
+
+  const handleGoToHome = () => {
+    navigation.navigate('home');
+  };
+
   return (
     <Container>
       <Content>
@@ -23,7 +31,10 @@ export function Feedback({ type = "SUCCESS" }: IFeedback) {
         </Text>
         <IllustrationFeedback source={isSuccess ? illustrationSuccess : illustrationFailure} />
         
-        <Button title="Ir para a página inicial" />
+        <Button 
+          title="Ir para a página inicial" 
+          onPress={handleGoToHome}
+        />
       </Content>
     </Container>
   );

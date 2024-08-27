@@ -5,7 +5,7 @@ interface ICardProps {
   isRed: boolean;
 }
 
-export const Card = styled.View<ICardProps>`
+export const Card = styled.TouchableOpacity<ICardProps>`
   width: 100%;
   align-items: center;
   justify-content: center;
