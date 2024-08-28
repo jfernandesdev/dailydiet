@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Text } from 'react-native';
+import { format } from 'date-fns';
 
 import { HeaderPage } from '@components/HeaderPage';
 import { Button } from '@components/Button';
 import { IMeal } from '@components/MealCard';
 import { ModalConfirmation } from '@components/ModalConfirmation';
 
-import { Container, Content } from './styles';
+import { CircleFlag, Container, Content, FlagDiet, Label, LabelFlag, Text, Title } from './styles';
 
 export function MealDetails() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -16,6 +16,8 @@ export function MealDetails() {
 
   const { meal } = route.params as { meal: IMeal };
   const headerBackgroundColor = meal?.isWithinDiet ? 'green_100' : 'red_100';
+
+  const formattedDateTime = format(new Date(`${meal.date}T${meal.time}`), "dd/MM/yyyy 'às' HH:mm");
 
   const onEdit = () => {
     navigation.navigate('mealForm', { type: 'EDIT', meal });
@@ -37,11 +39,16 @@ export function MealDetails() {
       <HeaderPage bg={headerBackgroundColor} title="Refeição" />
       <Container>
         <Content>
-          <Text>{meal.title}</Text>
+          <Title>{meal.title}</Title>
           <Text>{meal.description}</Text>
-          <Text>{meal.date}</Text>
-          <Text>{meal.time}</Text>
-          <Text>{meal.isWithinDiet ? 'Dentro da dieta' : 'Fora da dieta'}</Text>
+
+          <Label>Date e hora</Label>
+          <Text>{formattedDateTime}</Text>
+
+          <FlagDiet>
+            <CircleFlag isWithinDiet={meal.isWithinDiet} />
+            <LabelFlag>{meal.isWithinDiet ? 'dentro da dieta' : 'fora da dieta'}</LabelFlag>
+          </FlagDiet>
         </Content>
 
         <Button
