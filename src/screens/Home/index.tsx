@@ -39,11 +39,11 @@ export function Home() {
       <SectionList
         sections={groupedMeals}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <MealCard meal={item} />
-        )}
         renderSectionHeader={({ section: { title } }) => (
           <SectionHeader>{title}</SectionHeader>
+        )}
+        renderItem={({ item }) => (
+          <MealCard meal={item} />
         )}
         contentContainerStyle={{ paddingBottom: 100 }} 
       />

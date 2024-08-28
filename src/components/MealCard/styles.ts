@@ -2,14 +2,9 @@ import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.COLORS.white};
-  flex: 1;
   border: 1px solid ${({ theme }) => theme.COLORS.gray_300};
   margin-bottom: 8px;
   border-radius: 6px;
-  min-height: 50px;
-  padding: 0;
-  flex-direction: row;
-  align-items: center;
 `;
 
 export const Content = styled.View`
@@ -17,6 +12,7 @@ export const Content = styled.View`
   justify-content: space-between;
   align-items: center;
   flex: 1;
+  min-height: 50px;
   padding: 16px;
 `;
 

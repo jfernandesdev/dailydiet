@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Text } from 'react-native';
 
 import { HeaderPage } from '@components/HeaderPage';
 import { Button } from '@components/Button';
 import { IMeal } from '@components/MealCard';
+import { ModalConfirmation } from '@components/ModalConfirmation';
 
 import { Container, Content } from './styles';
 
 export function MealDetails() {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -19,8 +22,15 @@ export function MealDetails() {
   };
 
   const onDelete = () => {
-    // TODO
+    setModalVisible(true);
   };
+
+  const confirmDelete = () => {
+    // TODO
+    console.log('Refeição a deletar:', meal);
+    setModalVisible(false);
+  };
+
 
   return (
     <>
@@ -38,14 +48,21 @@ export function MealDetails() {
           title="Editar refeição"
           icon="edit"
           onPress={onEdit}
-        ></Button>
+        />
         <Button
           title="Excluir refeição"
           icon="delete-outline"
           type='SECONDARY'
           onPress={onDelete}
           style={{ marginTop: 16 }}
-        ></Button>
+        />
+
+        <ModalConfirmation
+          title="Deseja realmente excluir o registro da refeição?"
+          visible={modalVisible}
+          onCancel={() => setModalVisible(false)}
+          onConfirm={confirmDelete}
+        />
       </Container>
     </>
   );
