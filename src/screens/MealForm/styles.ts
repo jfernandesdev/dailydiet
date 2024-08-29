@@ -14,3 +14,8 @@ export const Content = styled.View`
   background-color: ${({ theme }) => theme.COLORS.white};
   justify-content: flex-start;
 `;
+
+export const RowWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;

@@ -4,8 +4,9 @@ import { Text, View } from 'react-native';
 import { HeaderPage } from '@components/HeaderPage';
 import { Button } from '@components/Button';
 import { IMeal } from '@components/MealCard';
+import { Input } from '@components/Input';
 
-import { Container, Content } from './styles';
+import { Container, Content, RowWrapper } from './styles';
 
 export function MealForm() {
   const navigation = useNavigation();
@@ -34,7 +35,33 @@ export function MealForm() {
               <Text>Status: {meal.isWithinDiet ? 'Dentro da dieta' : 'Fora da dieta'}</Text>
             </View>
           ) : (
-            <Text>Form add</Text>
+              <View>
+                <Input 
+                  label="Nome:"
+                />
+                <Input
+                  label="Descrição:"
+                  type="textarea"
+                  multiline={true}
+                  numberOfLines={3}
+                />
+                <RowWrapper>
+                  <Input 
+                    label="Data:" 
+                    placeholder="dd/mm/aaaa" 
+                    type="date" 
+                    keyboardType="numeric" 
+                    width="half" 
+                  />
+                  <Input 
+                    label="Hora:" 
+                    placeholder="hh:mm" 
+                    type="time" 
+                    keyboardType="numeric" 
+                    width="half" 
+                  />
+                </RowWrapper>
+              </View>
           )}
         </Content>
         <Button 

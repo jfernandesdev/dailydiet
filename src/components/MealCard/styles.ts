@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
+  flex: 1;
+  min-height: 56px;
+  max-height: 56px;
   background-color: ${({ theme }) => theme.COLORS.white};
   border: 1px solid ${({ theme }) => theme.COLORS.gray_300};
   margin-bottom: 8px;
