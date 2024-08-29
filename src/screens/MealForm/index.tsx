@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {  useNavigation, useRoute } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 
@@ -14,6 +15,11 @@ export function MealForm() {
 
   const { type, meal } = route.params as { type: 'ADD' | 'EDIT'; meal?: IMeal };
 
+  const [title, setTitle] = useState(meal?.title || '');
+  const [description, setDescription] = useState(meal?.description || '');
+  const [date, setDate] = useState(meal?.date || '');
+  const [time, setTime] = useState(meal?.time || '');
+
   const pageTitle = type === 'ADD' ? 'Nova Refeição' : 'Editar Refeição';
   const buttonTitle = type === 'ADD' ? 'Cadastrar refeição' : 'Salvar edições';
 
@@ -21,53 +27,50 @@ export function MealForm() {
     navigation.navigate('feedback', { type: 'SUCCESS'});
   };
 
+  console.log(meal);
   return (
     <>
       <HeaderPage bg="gray_200" title={pageTitle} />
       <Container>
         <Content>
-          {type === 'EDIT' && meal ? (
-            <View>
-              <Text>Título: {meal.title}</Text>
-              <Text>Descrição: {meal.description}</Text>
-              <Text>Data: {meal.date}</Text>
-              <Text>Hora: {meal.time}</Text>
-              <Text>Status: {meal.isWithinDiet ? 'Dentro da dieta' : 'Fora da dieta'}</Text>
-            </View>
-          ) : (
-              <View>
-                <Input 
-                  label="Nome:"
-                />
-                <Input
-                  label="Descrição:"
-                  type="textarea"
-                  multiline={true}
-                  numberOfLines={3}
-                />
-                <RowWrapper>
-                  <Input 
-                    label="Data:" 
-                    placeholder="dd/mm/aaaa" 
-                    type="date" 
-                    keyboardType="numeric" 
-                    width="half" 
-                  />
-                  <Input 
-                    label="Hora:" 
-                    placeholder="hh:mm" 
-                    type="time" 
-                    keyboardType="numeric" 
-                    width="half" 
-                  />
-                </RowWrapper>
-              </View>
-          )}
+          <View>
+            <Input
+              label="Nome:"
+              value={title}
+              onChangeText={setTitle}
+            />
+            <Input
+              label="Descrição:"
+              type="textarea"
+              multiline={true}
+              numberOfLines={3}
+              value={description}
+              onChangeText={setDescription}
+            />
+            <RowWrapper>
+              <Input
+                label="Data:"
+                placeholder="dd/mm/aaaa"
+                type="date"
+                width="half"
+                value={date}
+                onChangeText={setDate}
+              />
+              <Input
+                label="Hora:"
+                placeholder="hh:mm"
+                type="time"
+                width="half"
+                value={time}
+                onChangeText={setTime}
+              />
+            </RowWrapper>
+          </View>
         </Content>
-        <Button 
+        <Button
           title={buttonTitle}
           onPress={handleMealAction}
-        ></Button>
+        />
       </Container>
     </>
   );

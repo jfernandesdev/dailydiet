@@ -1,13 +1,14 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
-  flex: 1;
   min-height: 56px;
   max-height: 56px;
   background-color: ${({ theme }) => theme.COLORS.white};
   border: 1px solid ${({ theme }) => theme.COLORS.gray_300};
   margin-bottom: 8px;
   border-radius: 6px;
+  padding: 0;
+  overflow: hidden;
 `;
 
 export const Content = styled.View`
@@ -16,6 +17,12 @@ export const Content = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: 16px;
+`;
+
+export const TimeAndTitleContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const Separator = styled.View`
@@ -32,7 +39,6 @@ export const MealTime = styled.Text`
 `;
 
 export const MealTitle = styled.Text`
-  flex: 1;
   font-size: ${({ theme }) => `${theme.FONT_SIZE.md}px`};
   font-family: ${({ theme }) => theme.FONT_FAMILY.regular};
   color: ${({ theme }) => theme.COLORS.gray_600};
