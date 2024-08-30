@@ -7,7 +7,7 @@ import { Button } from '@components/Button';
 import { IMeal } from '@components/MealCard';
 import { Input } from '@components/Input';
 
-import { Container, Content, RowWrapper } from './styles';
+import { CheckboxContainer, CheckboxIndicator, CheckboxText, CheckboxWrapper, Container, Content, Label, RowWrapper } from './styles';
 
 export function MealForm() {
   const navigation = useNavigation();
@@ -19,6 +19,7 @@ export function MealForm() {
   const [description, setDescription] = useState(meal?.description || '');
   const [date, setDate] = useState(meal?.date || '');
   const [time, setTime] = useState(meal?.time || '');
+  const [isWithinDiet, setIsWithinDiet] = useState<boolean>(meal?.isWithinDiet ?? true);
 
   const pageTitle = type === 'ADD' ? 'Nova Refeição' : 'Editar Refeição';
   const buttonTitle = type === 'ADD' ? 'Cadastrar refeição' : 'Salvar edições';
@@ -27,7 +28,10 @@ export function MealForm() {
     navigation.navigate('feedback', { type: 'SUCCESS'});
   };
 
-  console.log(meal);
+  const handleSelectDiet = (value: boolean) => {
+    setIsWithinDiet(value);
+  };
+
   return (
     <>
       <HeaderPage bg="gray_200" title={pageTitle} />
@@ -65,6 +69,27 @@ export function MealForm() {
                 onChangeText={setTime}
               />
             </RowWrapper>
+
+            <Label>Está dentro da dieta?</Label>
+
+            <CheckboxContainer>
+              <CheckboxWrapper
+                isSelected={isWithinDiet}
+                type="yes"
+                onPress={() => handleSelectDiet(true)}
+              >
+                <CheckboxIndicator isSelected={isWithinDiet} type="yes" />
+                <CheckboxText>Sim</CheckboxText>
+              </CheckboxWrapper>
+              <CheckboxWrapper
+                isSelected={!isWithinDiet}
+                type="no"
+                onPress={() => handleSelectDiet(false)}
+              >
+                <CheckboxIndicator isSelected={!isWithinDiet} type="no" />
+                <CheckboxText>Não</CheckboxText>
+              </CheckboxWrapper>
+            </CheckboxContainer>
           </View>
         </Content>
         <Button
