@@ -25,7 +25,9 @@ export function MealForm() {
   const buttonTitle = type === 'ADD' ? 'Cadastrar refeição' : 'Salvar edições';
 
   const handleMealAction = () => {
-    navigation.navigate('feedback', { type: 'SUCCESS'});
+    const type = isWithinDiet ? 'SUCCESS' : 'FAIL';
+
+    navigation.navigate('feedback', { type });
   };
 
   const handleSelectDiet = (value: boolean) => {

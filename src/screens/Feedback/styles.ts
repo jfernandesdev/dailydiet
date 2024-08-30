@@ -18,8 +18,8 @@ export const IllustrationFeedback = styled.Image`
   margin: 30px 0;
 `;
 
-export const Title = styled.Text<{ type: "SUCCESS" | "FAIL" }>`
-  color: ${({ type, theme }) => type === 'FAIL' ? theme.COLORS.red_500 : theme.COLORS.green_500};
+export const Title = styled.Text<{ type: boolean }>`
+  color: ${({ type, theme }) => type === false ? theme.COLORS.red_500 : theme.COLORS.green_500};
   font-family: ${({ theme }) => theme.FONT_FAMILY.bold};
   font-size: ${({ theme }) => `${theme.FONT_SIZE.xl}px`};
   margin-bottom: 8px;

@@ -1,19 +1,19 @@
 import { Button } from '@components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import illustrationFailure from '@assets/illustration-failure.png';
 import illustrationSuccess from '@assets/illustration-success.png';
 
 import { Container, IllustrationFeedback, Title, Text, Bold, Content } from './styles';
 
-interface IFeedback {
-  type?: "SUCCESS" | "FAIL"
-}
 
-export function Feedback({ type = "SUCCESS" }: IFeedback) {
-  const isSuccess = type === 'SUCCESS';
-
+export function Feedback() {
+  const route = useRoute();
   const navigation = useNavigation();
+
+  const { type } = route.params as { type: "SUCCESS" | "FAIL" };
+
+  const isSuccess = type === 'SUCCESS';
 
   const handleGoToHome = () => {
     navigation.navigate('home');
@@ -22,7 +22,7 @@ export function Feedback({ type = "SUCCESS" }: IFeedback) {
   return (
     <Container>
       <Content>
-        <Title type={type}>{isSuccess ? 'Continue assim!' : 'Que pena!'}</Title>
+        <Title type={isSuccess}>{isSuccess ? 'Continue assim!' : 'Que pena!'}</Title>
         <Text>
           {isSuccess
             ? <>Você continua <Bold>dentro da dieta</Bold>. Muito bem!</>
