@@ -1,5 +1,5 @@
 import { SectionList } from 'react-native';
-import {  useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { HeaderWithAvatar } from '@components/HeaderWithAvatar';
 import { PercentCard } from '@components/PercentCard';
@@ -7,16 +7,39 @@ import { Button } from '@components/Button';
 import { MealCard } from '@components/MealCard';
 
 import { getGroupedMeals, getDietPercentage } from '@services/mealService';
+import { IMeal } from '@storage/addNewMeal';
 
 import { Container, Wrapper, Text, SectionHeader, FooterGradient } from './styles';
 
-import { mealData } from '@storage/data-mock'; // mock
+import { useCallback, useState } from 'react';
+import { mealsGetAll } from '@storage/mealsGetAll';
 
 export function Home() {
-  const groupedMeals = getGroupedMeals(mealData);
-  const dietPercentage = getDietPercentage(mealData);
-
+  const [meals, setMeals] = useState<IMeal[]>([]);
+  const [dietPercentage, setDietPercentage] = useState(0);
   const navigation = useNavigation();
+
+  // Função para buscar as refeições
+  const fetchMeals = useCallback(async () => {
+    try {
+      const fetchedMeals = await mealsGetAll();
+      setMeals(fetchedMeals);
+
+      const percentage = getDietPercentage(fetchedMeals);
+      setDietPercentage(percentage);
+    } catch (error) {
+      console.error("Não foi possível carregar as refeições ==>", error);
+    }
+  }, []);
+
+  // Atualizar a lista de refeições quando a tela for focada
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, [fetchMeals])
+  );
+
+  const groupedMeals = getGroupedMeals(meals);
 
   const handleNewMeal = () => {
     navigation.navigate('mealForm', { type: 'ADD'});

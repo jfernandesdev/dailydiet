@@ -1,16 +1,10 @@
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Container, Content, Separator, MealTime, MealTitle, StatusIndicator, TimeAndTitleContainer } from './styles';
 
-export interface IMeal {
-  id: string;
-  title: string;
-  description?: string;
-  date: string;
-  time: string;
-  isWithinDiet: boolean;
-}
+import { IMeal } from '@storage/addNewMeal';
+
+import { Container, Content, Separator, MealTime, MealTitle, StatusIndicator, TimeAndTitleContainer } from './styles';
 
 interface MealCardProps extends TouchableOpacityProps {
   meal: IMeal;

@@ -1,23 +1,33 @@
-import { format, parseISO } from 'date-fns';
-import { IMeal } from '@components/MealCard';
+import { format, parseISO, isValid } from 'date-fns';
+
+import { IMeal } from '@storage/addNewMeal';
 
 interface ISectionData {
   title: string;
   data: IMeal[];
 }
 
-const formatDate = (date: string) => format(parseISO(date), 'dd.MM.yyyy');
+const formatDate = (date?: string) => {
+  if (!date) return 'Data inválida'; 
+  const parsedDate = parseISO(date);
+  return isValid(parsedDate) ? format(parsedDate, 'dd.MM.yyyy') : 'Data inválida';
+};
+
+const parseTime = (time?: string) => {
+  const validTime = time && time.match(/^([01]\d|2[0-3]):([0-5]\d)$/) ? time : '00:00';
+  return new Date(`1970-01-01T${validTime}:00`).getTime();
+};
 
 // Agrupamento e ordenação das refeições por data e hora
 export const getGroupedMeals = (meals: IMeal[]): ISectionData[] => {
   return meals
     .sort((a, b) => {
-      const dateA = parseISO(a.date).getTime();
-      const dateB = parseISO(b.date).getTime();
-      const timeA = new Date(`1970-01-01T${a.time}:00`).getTime();
-      const timeB = new Date(`1970-01-01T${b.time}:00`).getTime();
+      const dateA = a.date ? parseISO(a.date).getTime() : 0; 
+      const dateB = b.date ? parseISO(b.date).getTime() : 0;
+      const timeA = parseTime(a.time);
+      const timeB = parseTime(b.time);
 
-      return dateB - dateA || timeB - timeA; // Ordenação por data e hora
+      return dateB - dateA || timeB - timeA;
     })
     .reduce<ISectionData[]>((acc, meal) => {
       const formattedDate = formatDate(meal.date);
@@ -31,7 +41,7 @@ export const getGroupedMeals = (meals: IMeal[]): ISectionData[] => {
 
       return acc;
     }, [])
-    .sort((a, b) => new Date(b.title).getTime() - new Date(a.title).getTime()); // Ordenação das seções por data
+    .sort((a, b) => new Date(b.title).getTime() - new Date(a.title).getTime());
 };
 
 // Calculo da porcentagem de refeições dentro da dieta
@@ -50,10 +60,10 @@ export const getBestDietStreak = (meals: IMeal[]): number => {
   // Ordena as refeições por data e hora
   const sortedMeals = meals
     .sort((a, b) => {
-      const dateA = parseISO(a.date).getTime();
-      const dateB = parseISO(b.date).getTime();
-      const timeA = new Date(`1970-01-01T${a.time}:00`).getTime();
-      const timeB = new Date(`1970-01-01T${b.time}:00`).getTime();
+      const dateA = a.date ? parseISO(a.date).getTime() : 0; 
+      const dateB = b.date ? parseISO(b.date).getTime() : 0;
+      const timeA = parseTime(a.time);
+      const timeB = parseTime(b.time);
 
       return dateA - dateB || timeA - timeB;
     });
