@@ -1,8 +1,8 @@
-# App Daily Diet
+# App Daily Diet 🥗
 
 Desafio 2: Aplicativo desenvolvido como desafio prático na trilha de React Native da Rocketseat.
 
-## Descrição : 
+## Descrição: 
 A proposta da aplicação é gerenciar as refeições diárias
 - [x] Adicionar nova refeição;
 - [x] Listagem das refeições agrupadas por data;
@@ -34,14 +34,14 @@ A proposta da aplicação é gerenciar as refeições diárias
 - Async Storage | 1.23.1
 
 
-## Layout 🎨
+## Print Screen 📲
 
 | Home | Estatísticas | Nova refeição | Feedback | Detalhes |
-| --- | --- | --- | --- | --- | 
-| <img src="" /> | <img src="" /> | <img src="" /> | <img src="" /> | <img src="" /> |
+| ---| --- | --- | --- | --- | 
+| <img src="https://github.com/jfernandesdev/dailydiet/blob/3db5b7b93df0db9b5f314b6e2b79429c34968b22/assets/layout/home.png" width="200px" /> | <img src="https://github.com/jfernandesdev/dailydiet/blob/3db5b7b93df0db9b5f314b6e2b79429c34968b22/assets/layout/estatisticas.png" width="195px"/> | <img src="https://github.com/jfernandesdev/dailydiet/blob/3db5b7b93df0db9b5f314b6e2b79429c34968b22/assets/layout/adicionar.png" width="200px"/> | <img src="https://github.com/jfernandesdev/dailydiet/blob/3db5b7b93df0db9b5f314b6e2b79429c34968b22/assets/layout/feeback.png" width="200px"/> | <img src="https://github.com/jfernandesdev/dailydiet/blob/3db5b7b93df0db9b5f314b6e2b79429c34968b22/assets/layout/detalhes.png" width="200px"/> |
 
 
-##  Rodando a aplicação localmente: ⚙
+##  Rodando o app localmente: ⚙
 
 Clone e entre na pasta do projeto. Depois instale as dependências:
 ```sh
